@@ -34,3 +34,20 @@ POST /loan/:clientId/:amount/:parcels
 GET /bagbank/:clientId
 POST /bagbank/:clientId/:amount
 ```
+
+# Credit Analysis
+
+```
+https://microservico.herokuapp.com/
+```
+
+```
+Header: API_KEY:key
+
+Body Params:
+{
+    "cpf":cpf
+}
+
+POST analisecredial/v1/
+```
