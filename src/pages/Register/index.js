@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView
 } from "react-native";
+import UserApi from "../../services/UserApi";
 
 export default function Register({ navigation }) {
   const [name, setName] = React.useState("");
@@ -18,7 +19,17 @@ export default function Register({ navigation }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    navigation.navigate("SelectClass");
+    const user = await UserApi.post("/", {
+      name,
+      document,
+      email,
+      phone,
+      password_hash: password
+    });
+
+    console.log(user)
+
+    // navigation.navigate("SelectClass");
   }
 
   return (
