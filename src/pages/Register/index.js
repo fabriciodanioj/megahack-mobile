@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import UserApi from "../../services/UserApi";
+import DocumentApi from "../../services/DocumentApi";
 
 export default function Register({ navigation }) {
   const [name, setName] = React.useState("");
@@ -19,17 +20,28 @@ export default function Register({ navigation }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const user = await UserApi.post("/", {
+    const response = await DocumentApi.post(
+      "/",
+      {
+        cpf: document
+      },
+      {
+        headers: {
+          API_KEY: "m8qrx1Pk7WBipCdoaZFRvqZoGjPLi8swOPG4+Z37Rbc="
+        }
+      }
+    );
+
+    const user = await UserApi.post("/user", {
       name,
       document,
       email,
       phone,
-      password_hash: password
+      password_hash: password,
+      category: response.data.grupo
     });
 
-    console.log(user)
-
-    // navigation.navigate("SelectClass");
+    navigation.navigate("SelectClass");
   }
 
   return (

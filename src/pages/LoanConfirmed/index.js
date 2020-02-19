@@ -17,53 +17,18 @@ export default function Verify({ navigation }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    navigation.navigate("LoanConfirmed");
+    navigation.navigate("");
   }
 
   return (
     <ScrollView style={styles.container}>
       <KeyboardAvoidingView enabled={true} behavior="padding">
         <Text style={styles.titleInvestiment}>Empréstimo</Text>
-        <View style={styles.header}>
-          <View style={{ paddingRight: 30 }}>
-            <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-              Empréstimo feito
-            </Text>
-            <Text style={{ fontSize: 15, fontWeight: "bold" }}>R$ 5000,00</Text>
-          </View>
-          <View>
-            <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-              Numero de parcelas:
-            </Text>
-            <Text style={{ fontSize: 15, fontWeight: "bold" }}>5x</Text>
-          </View>
-        </View>
         <View style={styles.content}>
           <Text style={styles.title}>Resumo:</Text>
           <Text style={{ paddingTop: 20, paddingHorizontal: 20, fontSize: 20 }}>
-            Juros: 2% ao Mês
+            Solicitação de emprestimo feita, aguarde até ser confirmado
           </Text>
-          <Text style={{ paddingTop: 20, paddingHorizontal: 20, fontSize: 20 }}>
-            Taxa de IOF: R$20,56
-          </Text>
-          <Text style={{ paddingTop: 20, paddingHorizontal: 20, fontSize: 20 }}>
-            Taxa de CET: 2% ao Mês
-          </Text>
-          <Text style={{ paddingTop: 20, paddingHorizontal: 20, fontSize: 20 }}>
-            Valor da parcela: 6x de R$170,00
-          </Text>
-          <Text style={{ paddingTop: 20, paddingHorizontal: 20, fontSize: 20 }}>
-            Dia de vencimento: Todo dia 10
-          </Text>
-          <Text style={{ paddingTop: 20, paddingHorizontal: 20, fontSize: 20 }}>
-            Ao total você pagará: R$1050,15
-          </Text>
-          <Text style={{ paddingTop: 20, paddingHorizontal: 20, fontSize: 20 }}>
-            Em outras formas de empréstimo você poderia pagar até R$1899,51
-          </Text>
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text style={styles.buttonText}>Confirmar Empréstimo</Text>
-          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     </ScrollView>

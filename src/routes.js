@@ -9,6 +9,8 @@ import Apresentation2 from "./pages/Apresentation2";
 import About from "./pages/About";
 import Investiments from "./pages/Investiments";
 import Loan from "./pages/Loan";
+import LoanConfirmed from "./pages/LoanConfirmed";
+
 
 const mainNavigation = createSwitchNavigator({
   About,
@@ -19,7 +21,8 @@ const mainNavigation = createSwitchNavigator({
   ChooseInvestiments,
   ChooseLoan,
   Investiments,
-  Loan
+  Loan,
+  LoanConfirmed
 });
 
 export default createAppContainer(mainNavigation);
