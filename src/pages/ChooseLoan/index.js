@@ -12,10 +12,18 @@ import {
 
 export default function Verify({ navigation }) {
   const [plots, setPlots] = React.useState(0);
+  const [cash, setCash] = React.useState(0);
+  const [day, setDay] = React.useState(0);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    navigation.navigate("SelectClass");
+  }
+
   return (
     <ScrollView style={styles.container}>
       <KeyboardAvoidingView enabled={Platform.OS === "ios"} behavior="padding">
-        <Text style={styles.titleInvestiment}>Empréstimo</Text>
+        <Text style={styles.titleLoan}>Empréstimo</Text>
         <View style={styles.content}>
           <Text style={styles.title}>Qual o valor do empréstimo?</Text>
           <TextInput
@@ -42,27 +50,53 @@ export default function Verify({ navigation }) {
             <Text style={{ color: "#FFF" }}>24x</Text>
           </View>
           <Text style={styles.title}>Qual dia do mês irá pagar?</Text>
+          <Text style={{ color: "#FFF", fontSize: 20 }}>Dia: {day}</Text>
           <View style={styles.TouchableOpacityGetView}>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setDay(5);
+              }}
+            >
               <Text style={{ color: "#FFF", fontSize: 20 }}>5</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setDay(10);
+              }}
+            >
               <Text style={{ color: "#FFF", fontSize: 20 }}>10</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setDay(15);
+              }}
+            >
               <Text style={{ color: "#FFF", fontSize: 20 }}>15</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setDay(20);
+              }}
+            >
               <Text style={{ color: "#FFF", fontSize: 20 }}>20</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setDay(25);
+              }}
+            >
               <Text style={{ color: "#FFF", fontSize: 20 }}>25</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate("Verify");
+              navigation.navigate("Loan");
             }}
           >
             <Text style={styles.buttonText}>Continuar</Text>
@@ -76,7 +110,8 @@ export default function Verify({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFF",
-    height: "100%"
+    height: "100%",
+    flex: 1
   },
   input: {
     width: "80%",
@@ -84,7 +119,7 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     marginTop: 16,
     borderRadius: 7,
-    paddingHorizontal: 120,
+    paddingLeft: 10,
     fontSize: 20,
     fontWeight: "bold",
     backgroundColor: "#FFF"
@@ -104,11 +139,11 @@ const styles = StyleSheet.create({
     color: "#FFF",
     marginBottom: 5
   },
-  titleInvestiment: {
+  titleLoan: {
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 30,
-    paddingLeft: 200,
+    marginLeft: 15,
     color: "#1F9E73"
   },
   TouchableOpacityGetView: {
@@ -141,12 +176,11 @@ const styles = StyleSheet.create({
     height: 58,
     backgroundColor: "#FFF",
     borderRadius: 34,
-    marginTop: 50,
     alignItems: "center",
     alignContent: "space-between",
     justifyContent: "center",
     paddingHorizontal: 20,
-    marginBottom: 60
+    marginBottom: 110
   },
   buttonText: {
     fontSize: 20,

@@ -6,14 +6,22 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  CheckBox
+  KeyboardAvoidingView
 } from "react-native";
 
 export default function Verify({ navigation }) {
+  const [cash, setCash] = React.useState(0);
+  const [risk, setRisk] = React.useState(0);
+  const [time, setTime] = React.useState(0);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    navigation.navigate("Investiments");
+  }
+
   return (
     <ScrollView style={styles.container}>
-      <KeyboardAvoidingView enabled={Platform.OS === "ios"} behavior="padding">
+      <KeyboardAvoidingView enabled={true} behavior="padding">
         <Text style={styles.titleInvestiment}>Investimentos</Text>
         <View style={styles.content}>
           <Text style={styles.title}>Quanto você irá investir?</Text>
@@ -22,37 +30,61 @@ export default function Verify({ navigation }) {
             style={styles.input}
             placeholderTextColor="#000"
             keyboardType="numeric"
+            value={cash}
+            onChangeText={setCash}
           />
           <Text style={styles.title}>Com qual nível de risco?</Text>
+          <Text> Risco: {risk ?? 0}</Text>
           <View style={styles.TouchableOpacityRiskView}>
-            <Text style={{ width: 50, fontSize: 15, fontWeight: "bold" }}>
+            <Text
+              style={{
+                width: 40,
+                fontSize: 15,
+                fontWeight: "bold"
+              }}
+            >
               Baixo Risco
             </Text>
             <TouchableOpacity
+              onPress={() => {
+                setRisk(1);
+              }}
               style={{
                 backgroundColor: "#CCE7E6",
                 ...styles.TouchableOpacityRisk
               }}
             ></TouchableOpacity>
             <TouchableOpacity
+              onPress={() => {
+                setRisk(2);
+              }}
               style={{
                 backgroundColor: "#99CFCD",
                 ...styles.TouchableOpacityRisk
               }}
             ></TouchableOpacity>
             <TouchableOpacity
+              onPress={() => {
+                setRisk(3);
+              }}
               style={{
                 backgroundColor: "#66B7B5",
                 ...styles.TouchableOpacityRisk
               }}
             ></TouchableOpacity>
             <TouchableOpacity
+              onPress={() => {
+                setRisk(4);
+              }}
               style={{
                 backgroundColor: "#339F9C",
                 ...styles.TouchableOpacityRisk
               }}
             ></TouchableOpacity>
             <TouchableOpacity
+              onPress={() => {
+                setRisk(5);
+              }}
               style={{
                 backgroundColor: "#008884",
                 ...styles.TouchableOpacityRisk
@@ -60,8 +92,7 @@ export default function Verify({ navigation }) {
             ></TouchableOpacity>
             <Text
               style={{
-                width: 50,
-                marginLeft: 10,
+                width: 40,
                 fontSize: 15,
                 fontWeight: "bold"
               }}
@@ -70,28 +101,44 @@ export default function Verify({ navigation }) {
             </Text>
           </View>
           <Text style={styles.title}>Quando pensa em retirar?</Text>
+          <Text> Tempo: {time ?? 0}</Text>
           <View style={styles.TouchableOpacityGetView}>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setTime("1 ano");
+              }}
+            >
               <Text>Até 1 ano</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setTime("1-3 anos");
+              }}
+            >
               <Text>1-3 anos</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.TouchableOpacityGetView}>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setTime("3-5 anos");
+              }}
+            >
               <Text>3-5 anos</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacityGet}>
+            <TouchableOpacity
+              style={styles.TouchableOpacityGet}
+              onPress={() => {
+                setTime("5+ anos");
+              }}
+            >
               <Text>+5 anos</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigation.navigate("Verify");
-            }}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Continuar</Text>
           </TouchableOpacity>
         </View>
@@ -115,7 +162,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: "#D1D1D1",
     borderWidth: 1,
-    paddingHorizontal: 120,
+    paddingLeft: 10,
     fontSize: 20
   },
   content: {
@@ -125,30 +172,34 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 70,
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     paddingTop: 20
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    alignSelf: "center"
   },
   titleInvestiment: {
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 30,
-    paddingLeft: 200,
-    color: "#FFF"
+    color: "#FFF",
+    marginLeft: 15
   },
   TouchableOpacityRiskView: {
     flex: 1,
     flexDirection: "row",
     marginTop: 20,
-    marginBottom: 60
+    marginBottom: 60,
+    alignItems: "center",
+    justifyContent: "center"
   },
   TouchableOpacityRisk: {
-    marginHorizontal: 5,
     borderRadius: 7,
     width: 40,
-    height: 40
+    height: 40,
+    marginRight: 7
   },
   TouchableOpacityGetView: {
     flex: 1,

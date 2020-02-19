@@ -10,6 +10,17 @@ import {
 } from "react-native";
 
 export default function Register({ navigation }) {
+  const [name, setName] = React.useState("");
+  const [document, setDocument] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    navigation.navigate("SelectClass");
+  }
+
   return (
     <ScrollView>
       <KeyboardAvoidingView enabled={Platform.OS === "ios"} behavior="padding">
@@ -19,37 +30,43 @@ export default function Register({ navigation }) {
             placeholder="Nome Completo"
             style={styles.input}
             placeholderTextColor="#1F9E73"
+            value={name}
+            onChangeText={setName}
           />
           <TextInput
             placeholder="Email"
             style={styles.input}
             placeholderTextColor="#1F9E73"
             keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
           />
           <TextInput
             placeholder="CPF"
             style={styles.input}
             placeholderTextColor="#1F9E73"
             keyboardType="numeric"
+            value={document}
+            onChangeText={setDocument}
           />
           <TextInput
             placeholder="Celular"
             style={styles.input}
             placeholderTextColor="#1F9E73"
             keyboardType="numeric"
+            value={phone}
+            onChangeText={setPhone}
           />
           <TextInput
             placeholder="Senha"
             secureTextEntry
             style={styles.input}
             placeholderTextColor="#1F9E73"
+            autoCapitalize={false}
+            value={password}
+            onChangeText={setPassword}
           />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigation.navigate("Verify");
-            }}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Continuar</Text>
           </TouchableOpacity>
         </View>
@@ -61,9 +78,9 @@ export default function Register({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 100,
+    marginTop: 50,
     paddingHorizontal: 29,
-    alignItems: "flex-start"
+    alignItems: "center"
   },
   title: {
     fontSize: 20,
@@ -91,7 +108,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "space-between",
     justifyContent: "center",
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    marginBottom: 20
   },
   buttonText: {
     fontSize: 20,
